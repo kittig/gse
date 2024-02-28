@@ -179,6 +179,9 @@ func (seg *Segmenter) calc(runes []rune) map[int]route {
 			freq, _, ok := seg.Find(string(runes[idx : i+1]))
 
 			if ok {
+				if freq == 0 {
+					freq = 1
+				}
 				f := math.Log(freq) - logT + rs[i+1].freq
 				r = route{freq: f, index: i}
 			} else {
